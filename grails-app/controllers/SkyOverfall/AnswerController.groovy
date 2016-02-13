@@ -113,7 +113,7 @@ class AnswerController {
         }
 
         if(!answer.save()) {
-            flash.message = [error : "Oops", type: "error"];
+            flash.message = [error : "Oops couldn't save your answer!", type: "error"];
             redirect controller:'question', action: 'show', id: params.question.id
         }
         else{

@@ -4,9 +4,10 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import org.springframework.security.access.annotation.Secured
 
-@Secured('IS_AUTHENTICATED_ANONYMOUSLY')
-@Transactional(readOnly = true)
+@Secured('IS_AUTHENTICATED_FULLY')
 class CommentController {
+
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -104,6 +105,39 @@ class CommentController {
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
+        }
+    }
+
+
+    def submitComment(){
+        Comment comment = new Comment()
+        comment.text = params.text
+        Post post = Post.findById(params.post.id);
+        post.addToComments(comment);
+        comment.post = post
+        comment.user = springSecurityService.currentUser
+
+      if (comment == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (comment.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond post.errors, view:'create'
+            return
+        }
+
+        if(!comment.save()) {
+            flash.message = [error : "Oops couldn't save your comment!", type: "error"];
+            redirect controller:'question', action: 'show', id: params.question.id
+        }
+        else{
+
+            post.save();
+            flash.message = [success : "Your comment was added", type: "success"];
+            redirect controller:'question', action: 'show', id: params.question.id
         }
     }
 }

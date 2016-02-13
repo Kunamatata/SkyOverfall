@@ -11,12 +11,15 @@ class QuestionController {
     def springSecurityService
 
     static allowedMethods =  [save: "POST", update: "PUT", delete: "DELETE"]
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Question.list(params), model:[questionCount: Question.count()]
     }
 
     def show(Question question) {
+        question.views = question.views + 1;
+        question.save()
         respond question
     }
 
@@ -152,7 +155,7 @@ class QuestionController {
 
     @Secured('IS_AUTHENTICATED_ANONYMOUSLY')
     def searchQuestionsByTags(){
-        
+
         def questionsAnswers = [:]
         def questions = null
         if(params.tags != ""){
@@ -167,19 +170,17 @@ class QuestionController {
             for(question in questions) {
                 questionsAnswers[question] = Answer.countByQuestion(question);
             }
-        } 
+        }
         else{
             questions = Question.findAll()
             questionsAnswers = [:];
-        for(question in questions) {
-            questionsAnswers[question] = Answer.countByQuestion(question);
+            for(question in questions) {
+                questionsAnswers[question] = Answer.countByQuestion(question);
+            }
         }
-        
-    }
-
 
         render(template: '../layouts/questionList', model:[questions: questionsAnswers])
     }
 
-   
+
 }

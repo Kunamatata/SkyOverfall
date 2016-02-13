@@ -11,4 +11,9 @@ class Answer extends Post  {
     static constraints = {
     	bestAnswered(display:false)
     }
+
+    static mapping =
+    {
+      comments sort: 'dateCreated', order :'asc'
+    }
 }

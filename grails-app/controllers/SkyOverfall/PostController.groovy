@@ -9,7 +9,7 @@ import org.springframework.security.access.annotation.Secured
 class PostController {
 
     def springSecurityService
-    
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -117,15 +117,14 @@ class PostController {
 
                 Post post = Post.findById(postId);
                 Vote voteExists = Vote.findWhere(post : post, user : user)
-                println "Does the vote exist : " + voteExists
+
 
                 if(!voteExists){
                     println "Votes : " + post.votes
                     Vote vote = new Vote(type: 1, post : post, user : user)
                     post.addToVotes(vote)
                     user.addToVotes(vote)
-                    post.reputation += 1;  
-                    println "coucou " +  voteExists
+                    post.reputation += 1;
                 }
 
                 else if(voteExists.type == -1){
@@ -133,22 +132,20 @@ class PostController {
                     voteExists.type = 0;
                     post.addToVotes(voteExists)
                     user.addToVotes(voteExists)
-                    post.reputation += 1; 
-                    
+                    post.reputation += 1;
+
                 }
                 else if(voteExists.type == 0){
                     post.removeFromVotes(voteExists)
                     voteExists.type = 1;
                     post.addToVotes(voteExists)
                     user.addToVotes(voteExists)
-                    post.reputation += 1; 
+                    post.reputation += 1;
                 }
                 post.save()
                 user.save();
-                println post.votes
-                println post.votes[0].type
                 render post.reputation
-        
+
     }
 
     @Secured('IS_AUTHENTICATED_FULLY')
@@ -159,7 +156,6 @@ class PostController {
 
             Post post = Post.findById(postId);
             Vote voteExists = Vote.findWhere(post : post, user : user)
-                println "Does the vote exist : " + voteExists
 
                 if(!voteExists){
                     println post.votes
@@ -171,30 +167,26 @@ class PostController {
                 }
                 else if(voteExists.type == 1)
                 {
-                    println "coucou"
                     post.removeFromVotes(voteExists)
                     voteExists.type = 0;
                     post.addToVotes(voteExists)
                     user.addToVotes(voteExists)
-                    
-                    println post.votes[0].type
+
                     post.reputation -= 1
                 }
 
                 else if (voteExists.type == 0){
-                    println "coucou"
                     post.removeFromVotes(voteExists)
                     voteExists.type = -1;
                     post.addToVotes(voteExists)
                     user.addToVotes(voteExists)
-                    
-                    println post.votes[0].type
+
                     post.reputation -= 1
                 }
-                
+
                 post.save();
                 user.save();
                 render post.reputation
-     
+
     }
 }

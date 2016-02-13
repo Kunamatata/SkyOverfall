@@ -49,12 +49,13 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         def userDescription = user.profileDescription;
         def questions = Question.findAllByUser(user);
         def answers = Answer.findAllByUser(user);
+        def comments = Comment.findAllByUser(user);
         def avatarLink = user.avatar;
 
         questions = questions.sort {it.dateCreated}.reverse()
         answers = answers.sort {it.dateCreated}.reverse()
 
-        return [user : user, numberOfPosts : numberOfPosts, avatarLink : avatarLink, profileDescription: userDescription, questions : questions, answers : answers];
+        return [user : user, numberOfPosts : numberOfPosts, avatarLink : avatarLink, profileDescription: userDescription, questions : questions, answers : answers, comments : comments];
     }
 
     @Secured(['permitAll'])

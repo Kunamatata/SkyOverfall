@@ -375,6 +375,7 @@ input::-moz-focus-inner {
 
 input {
     line-height: normal;
+    padding: 8px;
 }
 
 
@@ -506,11 +507,16 @@ pre {
     position: relative;
     min-height: 120px;
     padding: 19px 10px;
-    margin: 10px 0px;
-    -webkit-box-shadow: 0 8px 6px -6px #c0c0c0;
+    margin: 15px 0px;
+/*    -webkit-box-shadow: 0 8px 6px -6px #c0c0c0;
     -moz-box-shadow: 0 8px 6px -6px #c0c0c0;
-    box-shadow: 0 8px 6px -6px #c0c0c0;
+    box-shadow: 0 8px 6px -6px #c0c0c0;*/
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
 }
+
 
 .question-summary:nth-child(even) {
     background-color: #F7F3F3;
@@ -524,6 +530,10 @@ pre {
     /*border-bottom: 5px solid rgba(0,0,0,0.1);*/
     transform: translateX(2000px);
     animation: come-in-left 1s ease-out forwards;
+}
+
+.question-summary:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .question-summary h3 {
@@ -697,6 +707,9 @@ a {
     width: 67px;
 }
 
+a{
+        color: rgb(51, 170, 255);
+}
 
 /*Style for flash.message add transition and fade*/
 
@@ -733,12 +746,14 @@ a {
     transition: all 0.3s ease-out;
     border: none;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .ask-question:hover,
 .edit-profile-btn:hover,
 #submit:hover {
     background-color: #3071A9;
+
 }
 
 #edit-profile {
@@ -948,6 +963,12 @@ form.form-upload-avatar {
     width: 100%;
 }
 
+.author-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
 .author {
     display: block;
     clear: both;
@@ -1001,6 +1022,34 @@ input.col-8 {
 }
 
 
+.comment-link{
+    display: block;
+    margin-top: 10px;
+    color: rgb(51, 170, 255);
+}
+
+#comment-form{
+    display: none;
+}
+
+#comment-form textarea{
+    height: 100px;
+}
+
+.comment-container{
+    clear:both;
+    padding: 12px;
+    margin-top: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
+}
+
+.comment-container:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 /* Small Devices, Tablets */
 
 @media only screen and (max-width: 768px) {
@@ -1016,5 +1065,15 @@ input.col-8 {
     to {
         transform: translateX(0px);
         opacity: 1;
+    }
+}
+
+@keyframes background-fade {
+    from {
+        background-color: rgba(245,182,93,0.8);
+    }
+
+    to{
+        background-color: rgba(0,0,0,0);
     }
 }

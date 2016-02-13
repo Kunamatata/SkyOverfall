@@ -23,9 +23,11 @@ $(document).ready(function() {
 
     /*Animation when loading page on answers with # in URL*/
     if (typeof $(window.location.hash).offset() != 'undefined') {
+        div = $(window.location.hash).selector
         $("html, body").animate({
-            scrollTop: $(window.location.hash).offset().top
+            scrollTop: $(window.location.hash).offset().top - 50
         }, 1000);
+        $(div).css('animation', 'background-fade 3s');
     }
 
     $(".error").delay(2000).fadeOut("50");
@@ -179,5 +181,12 @@ $(document).ready(function() {
         });
     });
 
+    $(".comment-link").click(function(event){
+        commentForm = $(this).next()
+        $(commentForm).css({
+            display: 'block',
+        });
+        return false;
+    });
 
 });

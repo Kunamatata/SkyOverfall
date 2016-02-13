@@ -62,6 +62,22 @@
            </div>
          </g:each>
     </div>
+          <div class="row">
+          <div class="title-section">
+            Comments (${comments.size})
+          </div>
+         <g:each in="${comments}" var="comment">
+           <div class="question-profile-item">
+           <g:if test="${comment.post.class == skyoverfall.Question}">
+              <a href="/question/show/${comment.post.id}#comment-${comment.id}">${comment.post.title}</a>
+           </g:if>
+           <g:else>
+              <a href="/question/show/${comment.post.question.id}#comment-${comment.id}">${comment.post.question.title}</a>
+           </g:else>
+               <div class="question-profile-date"><g:formatDate format="d MMM y h:m:s a" date="${comment.dateCreated}"></g:formatDate></div>
+           </div>
+         </g:each>
+    </div>
     </div>
 
    </body>

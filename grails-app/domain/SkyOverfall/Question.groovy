@@ -33,6 +33,7 @@ class Question extends Post {
     static mapping =
     {
     	answers sort:'reputation', order:'desc'
+      comments sort: 'dateCreated', order :'asc'
     }
 
 }
