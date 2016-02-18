@@ -14,7 +14,7 @@
     <g:textArea type="text" name="text" required="true"/>
     <label>Tags</label>
     <g:textField type="text" name="tags" required="true"/>
-      <g:submitButton name="submit" value="Post Question" />
+      <g:submitButton name="submit" value="Post Question" class="ask-question"/>
     </g:form>
         </div>
     </body>

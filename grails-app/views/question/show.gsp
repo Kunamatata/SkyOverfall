@@ -37,7 +37,7 @@
                   ${comment.text}
                   <div class="author-container">
                <div class="author">
-                  <prettytime:display date="${question.dateCreated}" />
+                  <prettytime:display date="${comment.dateCreated}" />
                   <div class="author-image" style="background-image: url(${comment.user.avatar}"></div>
                   <div class="author-name"><a href="/user/${comment.user.username}">${comment.user.username}</a></div>
                </div>
@@ -79,7 +79,7 @@
                   <pre>${comment.text}</pre>
                   <div class="author-container">
                <div class="author">
-                  <prettytime:display date="${question.dateCreated}" />
+                  <prettytime:display date="${comment.dateCreated}" />
                   <div class="author-image" style="background-image: url(${comment.user.avatar}"></div>
                   <div class="author-name"><a href="/user/${comment.user.username}">${comment.user.username}</a></div>
                </div>
@@ -103,7 +103,7 @@
          <g:hiddenField name="user.id" value="${sec.loggedInUserInfo(field:"id")}" />
          <g:hiddenField name="question.id" value="${question.id}" />
          <g:textArea type="text" name="text" rows="15" cols="92" required="true"/>
-         <g:submitButton name="submitAnswer" value="Post Answer" />
+         <g:submitButton name="submitAnswer" value="Post Answer" class="ask-question" />
       </g:form>
    </body>
 </html>
