@@ -10,7 +10,23 @@
    <body>
       <div id="question-header">
          ${question.title}
+         <sec:ifNotLoggedIn>
+         </div>
+         </sec:ifNotLoggedIn>
+         <sec:ifLoggedIn>
+           <g:if test="${question.user.id == currentUser.id}">
+              <i class="fa fa-edit" id="edit-question-icon"></i>
       </div>
+         
+               <div class="edit-question-container">
+<textarea class="edit-question" type="text" name="text" required="true" id="textarea-edit-question">${question.text}</textarea>
+<input id="input-question-id" type="hidden" value="${question.id}" name="question.id"/>
+<input id="input-user-id" type="hidden" value="${currentUser.id}" name="user.id"/>
+<div class="edit-profile-btn" id="edit-question-submit">Edit your question</div>
+</div>
+</g:if>
+</sec:ifLoggedIn>
+           
       <div id="question-body">
          <div class="votecell">
             <i class="fa fa-arrow-up upvote" data-post-id="${question.id}" data-post-type="question"></i>
@@ -37,7 +53,7 @@
                   ${comment.text}
                   <div class="author-container">
                <div class="author">
-                  <prettytime:display date="${comment.dateCreated}" />
+                  <prettytime:display date="${question.dateCreated}" />
                   <div class="author-image" style="background-image: url(${comment.user.avatar}"></div>
                   <div class="author-name"><a href="/user/${comment.user.username}">${comment.user.username}</a></div>
                </div>
@@ -79,7 +95,7 @@
                   <pre>${comment.text}</pre>
                   <div class="author-container">
                <div class="author">
-                  <prettytime:display date="${comment.dateCreated}" />
+                  <prettytime:display date="${question.dateCreated}" />
                   <div class="author-image" style="background-image: url(${comment.user.avatar}"></div>
                   <div class="author-name"><a href="/user/${comment.user.username}">${comment.user.username}</a></div>
                </div>
@@ -103,7 +119,7 @@
          <g:hiddenField name="user.id" value="${sec.loggedInUserInfo(field:"id")}" />
          <g:hiddenField name="question.id" value="${question.id}" />
          <g:textArea type="text" name="text" rows="15" cols="92" required="true"/>
-         <g:submitButton name="submitAnswer" value="Post Answer" class="ask-question" />
+         <g:submitButton name="submitAnswer" value="Post Answer" />
       </g:form>
    </body>
 </html>

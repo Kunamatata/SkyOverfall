@@ -5,7 +5,6 @@ import grails.transaction.Transactional
 import org.springframework.security.access.annotation.Secured
 
 @Secured('IS_AUTHENTICATED_ANONYMOUSLY')
-
 class QuestionController {
 
     def springSecurityService
@@ -18,9 +17,10 @@ class QuestionController {
     }
 
     def show(Question question) {
+        def user = springSecurityService.currentUser;
         question.views = question.views + 1;
-        question.save()
-        respond question
+        question.save();
+        return [question : question, currentUser : user]
     }
 
     def create() {
@@ -180,6 +180,21 @@ class QuestionController {
         }
 
         render(template: '../layouts/questionList', model:[questions: questionsAnswers])
+    }
+
+    @Secured('IS_AUTHENTICATED_FULLY')
+    def editQuestion(){
+        def currentUser = springSecurityService.currentUser;
+        Question question = Question.findById(params.questionID);
+        Long userID = Long.parseLong(params.userID);
+        if(userID == currentUser.id)
+        {   
+            question.text = params.text;
+            question.lastUpdated = new Date();
+            question.save(failOnError:true)
+        }
+        
+        render question.text
     }
 
 
