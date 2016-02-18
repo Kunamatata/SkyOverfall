@@ -120,7 +120,6 @@ class PostController {
 
 
                 if(!voteExists){
-                    println "Votes : " + post.votes
                     Vote vote = new Vote(type: 1, post : post, user : user)
                     post.addToVotes(vote)
                     user.addToVotes(vote)
@@ -133,7 +132,6 @@ class PostController {
                     post.addToVotes(voteExists)
                     user.addToVotes(voteExists)
                     post.reputation += 1;
-
                 }
                 else if(voteExists.type == 0){
                     post.removeFromVotes(voteExists)
@@ -158,11 +156,9 @@ class PostController {
             Vote voteExists = Vote.findWhere(post : post, user : user)
 
                 if(!voteExists){
-                    println post.votes
                     Vote vote = new Vote(type: -1, post : post, user : user)
                     post.addToVotes(vote)
                     user.addToVotes(vote)
-                    println voteExists
                     post.reputation -= 1
                 }
                 else if(voteExists.type == 1)

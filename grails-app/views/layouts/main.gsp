@@ -11,7 +11,7 @@
       <link href='https://fonts.googleapis.com/css?family=Lato' rel=' stylesheet' type='text/css'>
       <asset:stylesheet src="application.css"/>
       <asset:javascript src="application.js"/>
-      
+
       <g:layoutHead/>
    </head>
    <body>
@@ -22,11 +22,11 @@
          </a>
          <sec:ifLoggedIn>
             <g:link class="logout-link" controller='logout'>Logout</g:link>
-            <a href="/user/list" class="logout-link">Search Users //</a>
-            <a href="/profile"><div class="login-link"><sec:loggedInUserInfo  field='username'/> //</div></a>
+            <a href="/user/list" class="logout-link">Search Users</a>
+            <a href="/profile"><div class="login-link"><sec:loggedInUserInfo  field='username'/></div></a>
          </sec:ifLoggedIn>
          <sec:ifNotLoggedIn>
-            <div class="create-account" id="create-account">Create Account //</div>
+            <div class="create-account" id="create-account">Create Account</div>
             <g:link class="login-link" controller='login'>Login</g:link>
          </sec:ifNotLoggedIn>
       </div>

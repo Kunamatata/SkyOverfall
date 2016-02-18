@@ -14,7 +14,6 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
     def createUser(){
         User user = new User(params);
         flash.message = [:];
-        println "not saved"
         if (user == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -52,6 +51,25 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         def comments = Comment.findAllByUser(user);
         def avatarLink = user.avatar;
 
+        def reputation = 0
+        int rep = 0;
+
+         /*Determine user reputation*/
+         for(int i = 0 ; i < answers.votes.size ; ++i){
+                 for(int j = 0 ; j < answers.votes[i].size() ; ++j){
+                     rep =  answers.votes[i][j].type
+                     if(rep == 1){
+                         reputation += 10;
+                     }
+                     else if(rep == -1){
+                         reputation -= 2;
+                     }
+                 }
+         }
+
+        user.reputation = reputation;
+        user.save();
+
         questions = questions.sort {it.dateCreated}.reverse()
         answers = answers.sort {it.dateCreated}.reverse()
 
@@ -74,7 +92,6 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
             users = User.findAllByUsernameLike(params.username + "%")
         else
             users =  User.findAll();
-                println users;
 
         render(template: '../layouts/listUsers', model:[users: users])
     }
