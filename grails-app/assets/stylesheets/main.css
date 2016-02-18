@@ -699,6 +699,18 @@ a {
     color: rgba(51, 170, 255,0.8);
 }
 
+.fa{
+    cursor: pointer;
+}
+
+.fa.fa-edit{
+    color: rgba(0,0,0,0.5);
+}
+
+.fa.fa-edit:hover{
+    color: rgba(0,0,0,1);
+}
+
 .number-answers {
     font-size: 18px;
 }
@@ -1049,6 +1061,19 @@ input.col-8 {
 .comment-container:hover{
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+
+.edit-question{
+    font-size: 16px;
+}
+
+.edit-question-container{
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    transition: all .5s ease-out;
+}
+
 
 /* Small Devices, Tablets */
 

@@ -158,9 +158,11 @@ class PostController {
             Vote voteExists = Vote.findWhere(post : post, user : user)
 
                 if(!voteExists){
+                    println post.votes
                     Vote vote = new Vote(type: -1, post : post, user : user)
                     post.addToVotes(vote)
                     user.addToVotes(vote)
+                    println voteExists
                     post.reputation -= 1
                 }
                 else if(voteExists.type == 1)

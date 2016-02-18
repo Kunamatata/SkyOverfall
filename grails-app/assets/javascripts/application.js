@@ -189,4 +189,34 @@ $(document).ready(function() {
         return false;
     });
 
+    $("#edit-question-icon").click(function(event){
+        $(".edit-question-container").css({
+            visibility : 'visible',
+            'max-height' : '500px',
+            opacity : '1'
+        })
+    });
+
+    $("#edit-question-submit").click(function(event) {
+        questionID = $('#input-question-id').val();
+        userID = $('#input-user-id').val()
+        text = $('#textarea-edit-question').val();
+        $.ajax({
+            url: '/question/editQuestion',
+            data: {
+                questionID : questionID,
+                userID : userID,
+                text : text
+            },
+            success: function(data) {
+                $('.question-text pre').html(data)
+            }
+        });
+        $(".edit-question-container").css({
+            visibiliy : 'hidden',
+            'max-height' : '0',
+            opacity : 0
+        });
+    });
+
 });
