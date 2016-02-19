@@ -1012,8 +1012,10 @@ form.form-upload-avatar {
 }
 
 .user-list-image {
-    height: 48px;
-    width: 48px;
+    height: 75px;
+    width: 75px;
+    box-shadow:inset 0px 0px 0px 1px #fff;
+    padding: 15px;
 }
 
 .author-name {
