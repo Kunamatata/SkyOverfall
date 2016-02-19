@@ -22,7 +22,11 @@ class UrlMappings {
         "500"(view:'/error')
         "404"(view:'/notFound')
 
+
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
+        "/login/auth"(controller: "home", action:"index")
+
+
     }
 }

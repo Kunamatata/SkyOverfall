@@ -23,6 +23,7 @@ class QuestionController {
         return [question : question, currentUser : user]
     }
 
+    @Secured('IS_AUTHENTICATED_FULLY')
     def create() {
         respond new Question(params)
     }
@@ -188,12 +189,12 @@ class QuestionController {
         Question question = Question.findById(params.questionID);
         Long userID = Long.parseLong(params.userID);
         if(userID == currentUser.id)
-        {   
+        {
             question.text = params.text;
             question.lastUpdated = new Date();
             question.save(failOnError:true)
         }
-        
+
         render question.text
     }
 

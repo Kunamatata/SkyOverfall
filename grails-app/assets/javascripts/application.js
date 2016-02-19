@@ -40,8 +40,15 @@ $(document).ready(function() {
         });
     });
 
-    $("#close-popup").click(function(event) {
-        $("#popup-create-account").css({
+    $("#login-link").click(function() {
+        $("#popup-login").css({
+            visibility: 'visible',
+            opacity: '1'
+        });
+    });
+
+    $(".close-popup").click(function(event) {
+        $(this).parent().css({
             visibility: 'hidden',
             opacity: '0'
         });

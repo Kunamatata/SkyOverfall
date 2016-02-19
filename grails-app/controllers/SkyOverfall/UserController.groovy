@@ -54,15 +54,28 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         def reputation = 0
         int rep = 0;
 
-         /*Determine user reputation*/
+         /*Determine user reputation on answers*/
          for(int i = 0 ; i < answers.votes.size ; ++i){
                  for(int j = 0 ; j < answers.votes[i].size() ; ++j){
                      rep =  answers.votes[i][j].type
                      if(rep == 1){
-                         reputation += 10;
+                         reputation += 5;
                      }
                      else if(rep == -1){
                          reputation -= 2;
+                     }
+                 }
+         }
+
+          /*Determine user reputation on questions*/
+         for(int i = 0 ; i < questions.votes.size ; ++i){
+                 for(int j = 0 ; j < questions.votes[i].size() ; ++j){
+                     rep =  questions.votes[i][j].type
+                     if(rep == 1){
+                         reputation += 10;
+                     }
+                     else if(rep == -1){
+                         reputation -= 3;
                      }
                  }
          }

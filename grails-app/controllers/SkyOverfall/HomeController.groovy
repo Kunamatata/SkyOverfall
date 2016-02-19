@@ -12,7 +12,6 @@ class HomeController {
 
     	List questions = Question.list(max:10);
       def questionsReponses = [:];
-      flash.message = [:];
 
       if(params.error == "8041") // 8041 -> User not exist code
          flash.message = [error : "User doesn't exist", type: "error"];

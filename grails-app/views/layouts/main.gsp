@@ -27,11 +27,11 @@
          </sec:ifLoggedIn>
          <sec:ifNotLoggedIn>
             <div class="create-account" id="create-account">Create Account</div>
-            <g:link class="login-link" controller='login'>Login</g:link>
+            <div class="login-link" id="login-link">Login</div>
          </sec:ifNotLoggedIn>
       </div>
        <div id="popup-create-account">
-            <div id="close-popup">X</div>
+            <div class="close-popup">X</div>
             <g:form  class="create-account-form" controller="user" action="createUser" method="POST">
                <label for="username">Username</label><br>
                <g:textField type="text" name="username" placeholder="username" required="true"/>
@@ -40,6 +40,18 @@
                <g:submitButton name="submitUser" class="btn-blue" value="Create Account" />
             </g:form>
          </div>
+<div id="popup-login">
+<div class="close-popup">X</div>
+         <form action="/login/authenticate" method="POST" id="loginForm" class="login-form" autocomplete="off">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="username" required="true">
+            <label for="password">Password</label>
+            <input type="password" name="password"  placeholder="********" required="true">
+            <label for="remember_me">Remember Me</label>
+            <input type="checkbox" class="chk" name="remember-me"><br>
+            <input type="submit" id="submit" value="Login">
+      </form>
+      </div>
       <div id="container">
        <g:if test="${flash.message}">
    <g:if test="${flash.message.type == 'error'}">
@@ -49,7 +61,6 @@
       <div class="${flash.message.type}">${flash.message.success}</div>
       </g:if>
     </g:if>
-
          <g:layoutBody/>
       </div>
       <div id="footer"></div>

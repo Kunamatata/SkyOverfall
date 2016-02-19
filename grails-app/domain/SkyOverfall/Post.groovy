@@ -16,7 +16,7 @@ class Post {
 	static hasMany = [votes : Vote]
 
     static constraints = {
-    	text(blank:false ,size : 50..10000)
+    	text(blank:false ,size : 20..10000)
     	dateCreated(display:false)
     	reputation(display:false)
     }

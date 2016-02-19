@@ -23,12 +23,12 @@ class ProfileController {
         def reputation = 0
         int rep = 0;
 
-         /*Determine user reputation*/
+         /*Determine user reputation on answers*/
          for(int i = 0 ; i < answers.votes.size ; ++i){
                  for(int j = 0 ; j < answers.votes[i].size() ; ++j){
                      rep =  answers.votes[i][j].type
                      if(rep == 1){
-                         reputation += 10;
+                         reputation += 5;
                      }
                      else if(rep == -1){
                          reputation -= 2;
@@ -36,8 +36,21 @@ class ProfileController {
                  }
          }
 
-         user.reputation = reputation;
-         user.save();
+           /*Determine user reputation on questions*/
+         for(int i = 0 ; i < questions.votes.size ; ++i){
+                 for(int j = 0 ; j < questions.votes[i].size() ; ++j){
+                     rep =  questions.votes[i][j].type
+                     if(rep == 1){
+                         reputation += 10;
+                     }
+                     else if(rep == -1){
+                         reputation -= 3;
+                     }
+                 }
+         }
+         println reputation
+        user.reputation = reputation;
+        user.save();
 
         questions = questions.sort {it.dateCreated}.reverse()
         answers = answers.sort {it.dateCreated}.reverse()

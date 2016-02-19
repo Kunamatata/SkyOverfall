@@ -508,15 +508,14 @@ pre {
     min-height: 120px;
     padding: 19px 10px;
     margin: 15px 0px;
-/*    -webkit-box-shadow: 0 8px 6px -6px #c0c0c0;
+    /*    -webkit-box-shadow: 0 8px 6px -6px #c0c0c0;
     -moz-box-shadow: 0 8px 6px -6px #c0c0c0;
     box-shadow: 0 8px 6px -6px #c0c0c0;*/
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     -webkit-transition: all 250ms ease-out;
     -moz-transition: all 250ms ease-out;
     transition: all 250ms ease-out;
 }
-
 
 .question-summary:nth-child(even) {
     background-color: #F7F3F3;
@@ -532,8 +531,8 @@ pre {
     animation: come-in-left 1s ease-out forwards;
 }
 
-.question-summary:hover{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.question-summary:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .question-summary h3 {
@@ -563,7 +562,6 @@ pre {
     display: inline-block;
     color: #777;
 }
-
 
 #navbar {
     position: relative;
@@ -678,7 +676,7 @@ a {
     margin-left: 50px;
 }
 
-.votecell span{
+.votecell span {
     margin-left: 9.5px;
     font-size: 18px;
     margin-top: 5px;
@@ -688,27 +686,27 @@ a {
 }
 
 .fa.fa-arrow-up,
-.fa.fa-arrow-down{
+.fa.fa-arrow-down {
     font-size: 2em;
-    color: rgba(51, 170, 255,0.3);
+    color: rgba(51, 170, 255, 0.3);
 }
 
 .fa.fa-arrow-up:hover,
-.fa.fa-arrow-down:hover{
+.fa.fa-arrow-down:hover {
     font-size: 2em;
-    color: rgba(51, 170, 255,0.8);
+    color: rgba(51, 170, 255, 0.8);
 }
 
-.fa{
+.fa {
     cursor: pointer;
 }
 
-.fa.fa-edit{
-    color: rgba(0,0,0,0.5);
+.fa.fa-edit {
+    color: rgba(0, 0, 0, 0.5);
 }
 
-.fa.fa-edit:hover{
-    color: rgba(0,0,0,1);
+.fa.fa-edit:hover {
+    color: rgba(0, 0, 0, 1);
 }
 
 .number-answers {
@@ -719,9 +717,10 @@ a {
     width: 67px;
 }
 
-a{
-        color: rgb(51, 170, 255);
+a {
+    color: rgb(51, 170, 255);
 }
+
 
 /*Style for flash.message add transition and fade*/
 
@@ -749,23 +748,25 @@ a{
 
 .ask-question,
 .edit-profile-btn,
-#submit {
+#submit,
+input[type="submit"] {
     display: inline-block;
     background-color: rgba(16, 143, 207, 1);
     padding: 15px 15px;
+    min-width: 110px;
     color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease-out;
     border: none;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .ask-question:hover,
 .edit-profile-btn:hover,
-#submit:hover {
+#submit:hover,
+input[type="submit"]:hover {
     background-color: #3071A9;
-
 }
 
 #edit-profile {
@@ -834,8 +835,10 @@ textarea {
     background-color: #3071A9;
 }
 
-#popup-create-account {
+#popup-create-account ,
+#popup-login{
     visibility: hidden;
+    display: inline-block;
     position: absolute;
     opacity: 0;
     margin: 150px auto;
@@ -845,14 +848,15 @@ textarea {
     left: 0;
     bottom: 0;
     right: 0;
-    height: 265px;
+    min-height: 265px;
+    height: 300px;
     width: 500px;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     transition: all 0.3s ease-out;
 }
 
-#close-popup {
+.close-popup {
     float: right;
     margin-right: 15px;
     z-index: 19999;
@@ -862,15 +866,17 @@ textarea {
     cursor: pointer;
 }
 
-.create-account-form {
+.create-account-form, .login-form {
     position: relative;
     width: 100%;
     z-index: -1;
     padding: 30px;
 }
 
-.create-account-form input,
-.create-account-form input[type="password"] {
+.create-account-form input[type="text"],
+.create-account-form input[type="password"],
+.login-form input[type="text"],
+.login-form input[type="password"] {
     color: #2a2a28;
     line-height: 1.3;
     font-size: 100%;
@@ -884,10 +890,18 @@ textarea {
     transition: all .3s ease-out;
 }
 
-.create-account-form input:focus {
+.create-account-form input[type="text"]:focus,
+.create-account-form input[type="password"]:focus,
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus  {
     border: 1px solid #ffffff;
     box-shadow: 0 0 5px 1px #3071A9;
     outline: none;
+}
+
+.create-account-form input[type="submit"],
+.login-form input[type="submit"]{
+    width: 100%;
 }
 
 .avatar-card {
@@ -975,7 +989,7 @@ form.form-upload-avatar {
     width: 100%;
 }
 
-.author-container{
+.author-container {
     position: relative;
     display: inline-block;
     width: 100%;
@@ -1033,41 +1047,39 @@ input.col-8 {
     margin-left: 5px;
 }
 
-
-.comment-link{
+.comment-link {
     display: block;
     margin-top: 10px;
     color: rgb(51, 170, 255);
 }
 
-#comment-form{
+#comment-form {
     display: none;
 }
 
-#comment-form textarea{
+#comment-form textarea {
     height: 100px;
 }
 
-.comment-container{
-    clear:both;
+.comment-container {
+    clear: both;
     padding: 12px;
     margin-top: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     -webkit-transition: all 250ms ease-out;
     -moz-transition: all 250ms ease-out;
     transition: all 250ms ease-out;
 }
 
-.comment-container:hover{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.comment-container:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-
-.edit-question{
+.edit-question {
     font-size: 16px;
 }
 
-.edit-question-container{
+.edit-question-container {
     opacity: 0;
     max-height: 0;
     visibility: hidden;
@@ -1095,10 +1107,9 @@ input.col-8 {
 
 @keyframes background-fade {
     from {
-        background-color: rgba(245,182,93,0.8);
+        background-color: rgba(245, 182, 93, 0.8);
     }
-
-    to{
-        background-color: rgba(0,0,0,0);
+    to {
+        background-color: rgba(0, 0, 0, 0);
     }
 }
