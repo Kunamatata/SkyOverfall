@@ -27,7 +27,7 @@
          </sec:ifLoggedIn>
          <sec:ifNotLoggedIn>
             <div class="create-account" id="create-account">Create Account</div>
-            <div class="login-link" id="login-link">Login</div>
+            <div class="login-link" id="login-link">Log in</div>
          </sec:ifNotLoggedIn>
       </div>
        <div id="popup-create-account">

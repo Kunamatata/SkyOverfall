@@ -1026,10 +1026,15 @@ form.form-upload-avatar {
     background-color: #f4f8fb;
     height: 75px;
     transition: all .3s ease-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
 }
 
 .user-card:hover {
     background-color: #F5F5F5;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .user-card a {
@@ -1089,9 +1094,10 @@ input.col-8 {
 
 /* Small Devices, Tablets */
 
-@media only screen and (max-width: 768px) {
-    [class^="col-"] {
-        width: 100%;
+@media only screen and (max-width: 976px) {
+    div[class*="col-"],
+    input.col-8 {
+        width: 48%;
     }
 }
 

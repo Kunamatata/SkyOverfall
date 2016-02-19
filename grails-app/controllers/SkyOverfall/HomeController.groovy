@@ -14,8 +14,9 @@ class HomeController {
       def questionsReponses = [:];
 
       if(params.error == "8041") // 8041 -> User not exist code
-         flash.message = [error : "User doesn't exist", type: "error"];
-
+        flash.message = [error : "User doesn't exist", type: "error"];
+      else if(request.forwardURI == "/login/auth")
+        flash.message = [error: "You need to log in to do that action", type: "error"]
     	for(question in questions) {
     		questionsReponses[question] = Answer.countByQuestion(question);
     	}

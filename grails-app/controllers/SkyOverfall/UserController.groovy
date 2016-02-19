@@ -89,7 +89,7 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         return [user : user, numberOfPosts : numberOfPosts, avatarLink : avatarLink, profileDescription: userDescription, questions : questions, answers : answers, comments : comments];
     }
 
-    @Secured(['permitAll'])
+    @Secured('IS_AUTHENTICATED_FULLY')
     def list(){
         def userList = null
 
@@ -98,7 +98,7 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         return  [users : userList]
     }
 
-    @Secured(['permitAll'])
+    @Secured('IS_AUTHENTICATED_FULLY')
     def searchUser(){
         def users = null
         if(params.username != null)
