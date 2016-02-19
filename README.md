@@ -3,8 +3,6 @@ This project is a Stackoverflow clone using Grails.
 ## Installation
 Clone or download the project and run it with grails run-app
 Open google chrome on localhost:8080
-## What to check?
-Check all the features available when using it
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
